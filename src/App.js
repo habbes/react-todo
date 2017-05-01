@@ -1,7 +1,7 @@
 import React from 'react';
 import Input from './Input';
 import TodoList from './TodoList';
-import { createTodo } from './TodoService';
+import { generateId } from './TodoService';
 
 class App extends React.Component {
 
@@ -27,17 +27,19 @@ class App extends React.Component {
     }
 
     handleAdd (text) {
-        this.addTodo(createTodo(text));
+        const id = generateId();
+        this.addTodo(id, text);
     }
 
     handleItemClick (todo) {
         this.toggleTodo(todo.id);
     }
 
-    addTodo (todo) {
+    addTodo (id, text) {
         this.props.store.dispatch({
             type: 'ADD_TODO',
-            todo
+            id,
+            text
         });
     }
 
