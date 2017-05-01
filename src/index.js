@@ -6,7 +6,12 @@ import App from './App';
 
 const store = createStore(reducer);
 
-ReactDOM.render(
-    <App store={store} />,
-    document.getElementById('root')
-);
+render();
+store.subscribe(render);
+
+function render () {
+    ReactDOM.render(
+        <App store={store} />,
+        document.getElementById('root')
+    );
+}
