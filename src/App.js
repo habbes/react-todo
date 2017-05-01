@@ -65,7 +65,7 @@ export default class App extends React.Component {
                 <Input onAdd={this.handleAdd} />
                 <TodoList todos={ filteredTodos }
                     onItemClick={this.handleItemClick} />
-                <FilterControls onFilter={this.handleFilter} />
+                <FilterControls currentFilter={filter} onFilter={this.handleFilter} />
             </div>
         )
     }

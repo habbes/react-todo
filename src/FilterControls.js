@@ -1,16 +1,19 @@
 import React from 'react';
+import FilterLink from './FilterLink';
 
-export default function FilterControls (props) {
-
+export default function FilterControls ({onFilter, currentFilter}) {
     return (
         <div>
-            <button 
-                onClick={() => props.onFilter('SHOW_ALL')}>Show All</button>
-            <button 
-                onClick={() => props.onFilter('SHOW_ACTIVE')}>Show Active</button>
-            <button
-                onClick={() => props.onFilter('SHOW_COMPLETED')}>Show Completed</button>
+            Show:
+            {' '}
+            <FilterLink filter="SHOW_ALL" onClick={onFilter} 
+                currentFilter={currentFilter}>All</FilterLink>
+            {' '}
+            <FilterLink filter="SHOW_ACTIVE" onClick={onFilter}
+                currentFilter={currentFilter}>Active</FilterLink>
+            {' '}
+            <FilterLink filter="SHOW_COMPLETED" onClick={onFilter}
+                currentFilter={currentFilter}>Completed</FilterLink>
         </div>
     );
-    
 }
