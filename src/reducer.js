@@ -1,9 +1,9 @@
-function todoApp (state = {}, action) {
-    return {
-        todos: todos(state.todos, action),
-        filter: filter(state.filter, action)
-    }
-}
+import { combineReducers } from 'redux';
+
+export default combineReducers({
+    todos,
+    filter
+});
 
 function todos (state = [], action) {
     switch (action.type) {
@@ -46,5 +46,3 @@ function filter (state = 'SHOW_ALL', action) {
 
     }
 }
-
-export default todoApp;
