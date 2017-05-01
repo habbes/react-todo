@@ -1,9 +1,10 @@
 import React from 'react';
 import Input from './Input';
 import TodoList from './TodoList';
+import FilterControls from './FilterControls';
 import { generateId } from './TodoService';
 
-class App extends React.Component {
+export default class App extends React.Component {
 
     constructor (props) {
         super(props);
@@ -12,13 +13,12 @@ class App extends React.Component {
         };
         this.handleAdd = this.handleAdd.bind(this);
         this.handleItemClick = this.handleItemClick.bind(this);
+        this.handleFilter = this.handleFilter.bind(this);
     }
 
     componentDidMount () {
         this.unsubscribe = this.props.store.subscribe(() => {
-            this.setState({
-                todos: this.props.store.getState()
-            });
+            this.setState(this.props.store.getState());
         });
     }
 
@@ -33,6 +33,13 @@ class App extends React.Component {
 
     handleItemClick (todo) {
         this.toggleTodo(todo.id);
+    }
+
+    handleFilter (filter) {
+        this.props.store.dispatch({
+            type: 'SET_FILTER',
+            filter
+        });
     }
 
     addTodo (id, text) {
@@ -51,14 +58,23 @@ class App extends React.Component {
     }
     
     render () {
+        const {filter, todos} = this.props.store.getState();
+        const filteredTodos = filterTodos(todos, filter);
         return (
             <div>
                 <Input onAdd={this.handleAdd} />
-                <TodoList todos={ this.props.store.getState() }
+                <TodoList todos={ filteredTodos }
                     onItemClick={this.handleItemClick} />
+                <FilterControls onFilter={this.handleFilter} />
             </div>
         )
     }
 }
 
-export default App;
+function filterTodos (todos, filter) {
+    return todos.filter(t => 
+        (filter === 'SHOW_ALL')
+        || (filter === 'SHOW_COMPLETED' && t.completed)
+        || (filter === 'SHOW_ACTIVE' && !t.completed)
+    );
+}

@@ -1,3 +1,10 @@
+function todoApp (state = {}, action) {
+    return {
+        todos: todos(state.todos, action),
+        filter: filter(state.filter, action)
+    }
+}
+
 function todos (state = [], action) {
     switch (action.type) {
         case 'ADD_TODO':
@@ -30,4 +37,14 @@ function todo (state, action) {
     }
 }
 
-export default todos;
+function filter (state = 'SHOW_ALL', action) {
+    switch (action.type) {
+        case 'SET_FILTER':
+            return action.filter;
+        default:
+            return state;
+
+    }
+}
+
+export default todoApp;
