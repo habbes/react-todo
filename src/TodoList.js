@@ -1,24 +1,14 @@
 import React from 'react';
+import TodoItem from './TodoItem';
 
-export default class TodoList extends React.Component {
-
-    renderList () {
-        return this.props.todos.map((todo, i) => {
-            return (
-                <li key={todo.id} id={todo.id}
-                    style={{textDecoration: todo.completed? 'line-through': 'none'}}
-                    onClick={() => {this.props.onItemClick(todo)}}>
-                    {todo.text}
-                </li>
-            );
-        });
-    }
-
-    render () {
-        return (
-            <ul>
-                { this.renderList() }
-            </ul>
-        );
-    }
+export default function TodoList ({todos, onTodoClick}) {
+    return (
+        <ul>
+            {todos.map(todo => 
+                <TodoItem key={todo.id}
+                    {...todo}
+                    onClick={() => onTodoClick(todo.id)}/>)
+            }
+        </ul>
+    )
 }

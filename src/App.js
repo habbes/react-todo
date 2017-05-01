@@ -12,7 +12,7 @@ export default class App extends React.Component {
             todos: props.store.getState()
         };
         this.handleAdd = this.handleAdd.bind(this);
-        this.handleItemClick = this.handleItemClick.bind(this);
+        this.handleTodoClick = this.handleTodoClick.bind(this);
         this.handleFilter = this.handleFilter.bind(this);
     }
 
@@ -31,8 +31,8 @@ export default class App extends React.Component {
         this.addTodo(id, text);
     }
 
-    handleItemClick (todo) {
-        this.toggleTodo(todo.id);
+    handleTodoClick (todoId) {
+        this.toggleTodo(todoId);
     }
 
     handleFilter (filter) {
@@ -64,7 +64,7 @@ export default class App extends React.Component {
             <div>
                 <Input onAdd={this.handleAdd} />
                 <TodoList todos={ filteredTodos }
-                    onItemClick={this.handleItemClick} />
+                    onTodoClick={this.handleTodoClick} />
                 <FilterControls currentFilter={filter} onFilter={this.handleFilter} />
             </div>
         )
