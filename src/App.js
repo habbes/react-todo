@@ -11,6 +11,7 @@ class App extends React.Component {
             todos: props.store.getState()
         };
         this.handleAdd = this.handleAdd.bind(this);
+        this.handleItemClick = this.handleItemClick.bind(this);
     }
 
     componentDidMount () {
@@ -29,18 +30,30 @@ class App extends React.Component {
         this.addTodo(createTodo(text));
     }
 
+    handleItemClick (todo) {
+        this.toggleTodo(todo.id);
+    }
+
     addTodo (todo) {
         this.props.store.dispatch({
             type: 'ADD_TODO',
             todo
         });
     }
+
+    toggleTodo (id) {
+        this.props.store.dispatch({
+            type: 'TOGGLE_TODO',
+            id
+        });
+    }
     
     render () {
         return (
             <div>
-                <Input onAdd={this.handleAdd}/>
-                <TodoList todos={ this.props.store.getState() }/>
+                <Input onAdd={this.handleAdd} />
+                <TodoList todos={ this.props.store.getState() }
+                    onItemClick={this.handleItemClick} />
             </div>
         )
     }

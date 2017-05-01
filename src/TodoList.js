@@ -5,16 +5,20 @@ export default class TodoList extends React.Component {
     renderList () {
         return this.props.todos.map((todo, i) => {
             return (
-                <li key={todo.id} id={todo.id}>{todo.text}</li>
+                <li key={todo.id} id={todo.id}
+                    style={{textDecoration: todo.completed? 'line-through': 'none'}}
+                    onClick={() => {this.props.onItemClick(todo)}}>
+                    {todo.text}
+                </li>
             );
         });
     }
 
     render () {
         return (
-            <div>
+            <ul>
                 { this.renderList() }
-            </div>
+            </ul>
         );
     }
 }
