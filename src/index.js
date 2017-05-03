@@ -1,10 +1,7 @@
 import ReactDOM from 'react-dom';
 import React from 'react';
-import { createStore } from 'redux';
-import reducer from './reducer';
+import store from './store';
 import App from './App';
-
-const store = createStore(reducer);
 
 render();
 store.subscribe(render);
