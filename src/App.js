@@ -1,7 +1,7 @@
 import React from 'react';
 import Input from './TodoInput';
 import TodoList from './TodoList';
-import FilterControls from './FilterControls';
+import Footer from './Footer';
 import { generateId } from './TodoService';
 
 export default function App ({ store }) {
@@ -23,11 +23,7 @@ export default function App ({ store }) {
                         id
                     })
                 }} />
-            <FilterControls currentFilter={filter} onFilter={f => {
-                store.dispatch({
-                    type: 'SET_FILTER',
-                    filter: f
-                })}} />
+            <Footer />
         </div>
     );
 }

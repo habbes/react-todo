@@ -1,13 +1,36 @@
 import React from 'react';
+import store from './store';
+import Link from './Link';
 
-export default function FilterLink (props) {
-    if (props.filter === props.currentFilter) {
-        return <span>{props.children}</span>;
+export default class FilterLink extends React.Component {
+    constructor (props) {
+        super(props);
+        this.state = store.getState();
     }
-    return (
-        <a href="#" onClick={e => {
-            e.preventDefault();
-            props.onClick(props.filter);
-        }}>{props.children}</a>
-    )
+
+    componentDidMount () {
+        this.unsubscribe = store.subscribe(() => {
+            this.forceUpdate();
+        });
+    }
+
+    componentWillUnmount () {
+        this.unsubscribe();
+    }
+
+    render () {
+        const state = this.state;
+        const {filter, children} = this.props;
+
+        return (
+            <Link active={filter === state.filter}
+                onClick={() => 
+                    store.dispatch({
+                        type: 'SET_FILTER',
+                        filter: filter
+                    })}>
+                {children}
+            </Link>
+        )
+    }
 }
