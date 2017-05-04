@@ -31,6 +31,6 @@ export default class FilterLink extends React.Component {
                     })}>
                 {children}
             </Link>
-        )
+        );
     }
 }
