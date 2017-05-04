@@ -6,9 +6,9 @@ import Footer from './Footer';
 export default function App ({ store }) {
     return (
         <div>
-            <AddTodo />
-            <FilteredTodoList />
-            <Footer />
+            <AddTodo store={store} />
+            <FilteredTodoList store={store} />
+            <Footer store={store} />
         </div>
     );
 }

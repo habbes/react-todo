@@ -1,9 +1,8 @@
 import React from 'react';
-import store from './store';
 import { generateId } from './TodoService';
 import TodoInput from './TodoInput';
 
-export default function AddTodo () {
+export default function AddTodo ({store}) {
     return (
         <TodoInput onAddTodo={text => 
             store.dispatch({

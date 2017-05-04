@@ -1,10 +1,10 @@
 import React from 'react';
-import store from './store';
 import { filterTodos } from './TodoService';
 import TodoList from './TodoList';
 
 export default class FilteredTodoList extends React.Component {
     componentDidMount () {
+        const {store} = this.props;
         this.unsubscribe = store.subscribe(() => {
             this.forceUpdate()
         });
@@ -15,6 +15,7 @@ export default class FilteredTodoList extends React.Component {
     }
 
     render () {
+        const {store} = this.props;
         const {todos, filter} = store.getState();
         const filteredTodos = filterTodos(todos, filter);
         return (
