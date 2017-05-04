@@ -4,15 +4,10 @@ import { filterTodos } from './TodoService';
 import TodoList from './TodoList';
 
 export default class FilteredTodoList extends React.Component {
-    constructor (props) {
-        super(props);
-        this.state = store.getState();
-    }
-
     componentDidMount () {
-        this.unsubscribe = store.subscribe(() => 
-           this.forceUpdate()
-        );
+        this.unsubscribe = store.subscribe(() => {
+            this.forceUpdate()
+        });
     }
 
     componentWillUnmount () {
@@ -20,9 +15,10 @@ export default class FilteredTodoList extends React.Component {
     }
 
     render () {
-        const todos = filterTodos(this.state.todos);
+        const {todos, filter} = store.getState();
+        const filteredTodos = filterTodos(todos, filter);
         return (
-            <TodoList todos={todos}
+            <TodoList todos={filteredTodos}
                 onTodoClick={id => 
                     store.dispatch({
                         type: 'TOGGLE_TODO',

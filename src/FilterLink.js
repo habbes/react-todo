@@ -3,10 +3,6 @@ import store from './store';
 import Link from './Link';
 
 export default class FilterLink extends React.Component {
-    constructor (props) {
-        super(props);
-        this.state = store.getState();
-    }
 
     componentDidMount () {
         this.unsubscribe = store.subscribe(() => {
@@ -19,7 +15,7 @@ export default class FilterLink extends React.Component {
     }
 
     render () {
-        const state = this.state;
+        const state = store.getState();
         const {filter, children} = this.props;
 
         return (
