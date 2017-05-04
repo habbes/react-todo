@@ -3,12 +3,12 @@ import AddTodo from './AddTodo';
 import FilteredTodoList from './FilteredTodoList';
 import Footer from './Footer';
 
-export default function App ({ store }) {
+export default function App () {
     return (
         <div>
-            <AddTodo store={store} />
-            <FilteredTodoList store={store} />
-            <Footer store={store} />
+            <AddTodo />
+            <FilteredTodoList />
+            <Footer />
         </div>
     );
 }

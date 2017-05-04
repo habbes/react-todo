@@ -1,10 +1,11 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { filterTodos } from './TodoService';
 import TodoList from './TodoList';
 
 export default class FilteredTodoList extends React.Component {
     componentDidMount () {
-        const {store} = this.props;
+        const {store} = this.context;
         this.unsubscribe = store.subscribe(() => {
             this.forceUpdate()
         });
@@ -15,7 +16,7 @@ export default class FilteredTodoList extends React.Component {
     }
 
     render () {
-        const {store} = this.props;
+        const {store} = this.context;
         const {todos, filter} = store.getState();
         const filteredTodos = filterTodos(todos, filter);
         return (
@@ -28,3 +29,7 @@ export default class FilteredTodoList extends React.Component {
         );
     }
 }
+
+FilteredTodoList.contextTypes = {
+    store: PropTypes.object
+};
