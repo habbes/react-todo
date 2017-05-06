@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { filterTodos } from './TodoService';
+import { toggleTodo } from './actions';
 import TodoList from './TodoList';
 
 const FilteredTodoList = connect(mapStateToProps, mapDispatchToProps)(TodoList);
@@ -17,10 +18,7 @@ function mapStateToProps (state) {
 function mapDispatchToProps (dispatch) {
     return {
         onTodoClick: id => {
-            dispatch({
-                type: 'TOGGLE_TODO',
-                id
-            })
+            dispatch(toggleTodo(id))
         }
     }
 }

@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { setFilter } from './actions';
 import Link from './Link';
 
 const FilterLink = connect(mapStateToProps, mapDispatchToProps)(Link);
@@ -15,10 +16,7 @@ function mapStateToProps (state, props) {
 function mapDispatchToProps (dispatch, props) {
     return {
         onClick: () => {
-            dispatch({
-                type: 'SET_FILTER',
-                filter: props.filter
-            });
+            dispatch(setFilter(props.filter));
         }
     }
 }
