@@ -1,35 +1,26 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import { filterTodos } from './TodoService';
 import TodoList from './TodoList';
 
-export default class FilteredTodoList extends React.Component {
-    componentDidMount () {
-        const {store} = this.context;
-        this.unsubscribe = store.subscribe(() => {
-            this.forceUpdate()
-        });
-    }
+const FilteredTodoList = connect(mapStateToProps, mapDispatchToProps)(TodoList);
+export default FilteredTodoList;
 
-    componentWillUnmount () {
-        this.unsubscribe();
-    }
-
-    render () {
-        const {store} = this.context;
-        const {todos, filter} = store.getState();
-        const filteredTodos = filterTodos(todos, filter);
-        return (
-            <TodoList todos={filteredTodos}
-                onTodoClick={id => 
-                    store.dispatch({
-                        type: 'TOGGLE_TODO',
-                        id
-                    }) } />
-        );
+function mapStateToProps (state) {
+    const { todos, filter } = state;
+    return {
+        todos: filterTodos(todos, filter)
     }
 }
 
-FilteredTodoList.contextTypes = {
-    store: PropTypes.object
-};
+function mapDispatchToProps (dispatch) {
+    return {
+        onTodoClick: id => {
+            dispatch({
+                type: 'TOGGLE_TODO',
+                id
+            })
+        }
+    }
+}
