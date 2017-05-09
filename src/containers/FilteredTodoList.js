@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { filterTodos } from '../TodoService';
+import { filterTodos } from '../services/todo';
 import { toggleTodo } from '../actions';
 import TodoList from '../components/TodoList';
 
