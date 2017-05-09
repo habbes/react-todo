@@ -13,7 +13,7 @@ function mapStateToProps (state, props) {
 
 function mapDispatchToProps (dispatch, props) {
     return {
-        onClick: () => {
+        onClick() {
             dispatch(setFilter(props.filter));
         }
     }
