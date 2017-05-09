@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
-import { addTodo } from './actions';
-import TodoInput from './TodoInput';
+import { addTodo } from '../actions';
+import TodoInput from '../components/TodoInput';
 
 const AddTodo = connect(null, mapDispatchToProps)(TodoInput);
 export default AddTodo;

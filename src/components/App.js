@@ -1,6 +1,6 @@
 import React from 'react';
-import AddTodo from './AddTodo';
-import FilteredTodoList from './FilteredTodoList';
+import AddTodo from '../containers/AddTodo';
+import FilteredTodoList from '../containers/FilteredTodoList';
 import Footer from './Footer';
 
 export default function App () {

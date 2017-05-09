@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
-import { setFilter } from './actions';
-import Link from './Link';
+import { setFilter } from '../actions';
+import Link from '../components/Link';
 
 const FilterLink = connect(mapStateToProps, mapDispatchToProps)(Link);
 export default FilterLink;

@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
-import { filterTodos } from './TodoService';
-import { toggleTodo } from './actions';
-import TodoList from './TodoList';
+import { filterTodos } from '../TodoService';
+import { toggleTodo } from '../actions';
+import TodoList from '../components/TodoList';
 
 const FilteredTodoList = connect(mapStateToProps, mapDispatchToProps)(TodoList);
 export default FilteredTodoList;
