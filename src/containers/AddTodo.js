@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { addTodo } from '../actions';
+import { addTodo } from '../services/actions';
 import TodoInput from '../components/TodoInput';
 
 const AddTodo = connect(null, mapDispatchToProps)(TodoInput);

@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { setFilter } from '../actions';
+import { setFilter } from '../services/actions';
 import Link from '../components/Link';
 
 const FilterLink = connect(mapStateToProps, mapDispatchToProps)(Link);

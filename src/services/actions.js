@@ -1,4 +1,4 @@
-import { generateId } from './services/todo';
+import { generateId } from './todo';
 
 const ADD_TODO = 'ADD_TODO';
 const TOGGLE_TODO = 'TOGGLE_TODO';
